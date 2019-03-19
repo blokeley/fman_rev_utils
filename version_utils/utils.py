@@ -20,9 +20,6 @@ def list_obsolete_drafts(paths):
     obsolete_drafts = []
 
     for path in paths:
-        with open('fman_log.txt', 'a') as f:
-            f.write(f'testing {path}\n')
-
         if DRAFT_REGEX.match(path.name):
             drafts.append(path)
 
