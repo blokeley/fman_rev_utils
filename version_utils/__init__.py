@@ -8,7 +8,7 @@ from fman.url import as_human_readable, as_url, basename, join
 
 from .utils import list_obsolete_drafts, released_name
 
-__version__ = '0.1'
+__version__ = '0.2'
 
 
 class ListObsoleteDrafts(DirectoryPaneCommand):
@@ -55,6 +55,26 @@ class CopyPathMinusDropbox(DirectoryPaneCommand):
     def __call__(self):
         to_copy = self.get_chosen_files() or [self.pane.get_path()]
         to_copy = [_strip_dbx(as_human_readable(f)) for f in to_copy]
+        clipboard.clear()
+        clipboard.set_text(os.linesep.join(to_copy))
+        _report_clipboard_action('Copied', to_copy,
+                                 ' to the clipboard', 'path')
+
+
+class CopyFileName(DirectoryPaneCommand):
+    def __call__(self):
+        to_copy = self.get_chosen_files() or [self.pane.get_path()]
+        to_copy = [Path(as_human_readable(f)).name for f in to_copy]
+        clipboard.clear()
+        clipboard.set_text(os.linesep.join(to_copy))
+        _report_clipboard_action('Copied', to_copy,
+                                 ' to the clipboard', 'path')
+
+
+class CopyFileStem(DirectoryPaneCommand):
+    def __call__(self):
+        to_copy = self.get_chosen_files() or [self.pane.get_path()]
+        to_copy = [Path(as_human_readable(f)).stem for f in to_copy]
         clipboard.clear()
         clipboard.set_text(os.linesep.join(to_copy))
         _report_clipboard_action('Copied', to_copy,

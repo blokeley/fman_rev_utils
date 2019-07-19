@@ -2,11 +2,13 @@
 
 Revision control utilities for the [fman](https://fman.io/) file manager.
 
-See the [fman plugin documentation](https://fman.io/docs/plugins-introduction) for more information.
+See the [fman plugin documentation](https://fman.io/docs/plugins-introduction) for more 
+information.
 
 ## Filename conventions
 
-The filenames should have "revA1" or "revA2" etc. for a draft and "revA" or revB" etc. for released files.
+The filenames should have "revA1" or "revA2" etc. for a draft and "revA" or revB" etc. for 
+released files.
 
 ## Utilities provided by this plugin
 
@@ -16,3 +18,11 @@ The filenames should have "revA1" or "revA2" etc. for a draft and "revA" or revB
 * List obsolete drafts.  As above but list filenames in a dialog box.
 
 * Rename as released.  Rename revA1 to revA etc.
+
+* Copy file name.  Copies the file names of the selected files to the clipboard.
+
+* Copy file stem.  Copies the file stems (file name without the suffix) of the selected files to 
+  the clipboard.
+
+* Copy path minus Dropbox.  Copies the paths of the selected files, without the Dropbox path, to
+  the clipboard.
