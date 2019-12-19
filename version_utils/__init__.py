@@ -1,22 +1,14 @@
 import os
 from pathlib import Path
 
-from fman import (clipboard, DirectoryPaneCommand, Task, show_alert,
+from fman import (clipboard, DirectoryPaneCommand, Task,
                   show_status_message, submit_task)
 from fman.fs import iterdir, prepare_move
 from fman.url import as_human_readable, as_url, basename, join
 
 from .utils import list_obsolete_drafts, released_name
 
-__version__ = '0.2'
-
-
-class ListObsoleteDrafts(DirectoryPaneCommand):
-    def __call__(self):
-        pane_url = self.pane.get_path()
-        paths = (Path(p) for p in iterdir(pane_url))
-        drafts = (str(p) for p in list_obsolete_drafts(paths))
-        show_alert('\n'.join(drafts))
+__version__ = '0.2.1'
 
 
 class SelectObsoleteDrafts(DirectoryPaneCommand):
