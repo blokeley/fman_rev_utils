@@ -26,3 +26,6 @@ released files.
 
 * Copy path minus Dropbox.  Copies the paths of the selected files, without the Dropbox path, to
   the clipboard.
+
+* Copy path, replacing your user name with %username% so that hyperlinks should work on their
+  computers.
