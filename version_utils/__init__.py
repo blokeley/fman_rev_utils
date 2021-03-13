@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from core import Modified
 from fman import (clipboard, DirectoryPaneCommand, Task,
                   show_status_message, submit_task)
 from fman.fs import iterdir, prepare_move
@@ -8,7 +9,7 @@ from fman.url import as_human_readable, as_url, basename, join
 
 from .utils import list_obsolete_drafts, released_name
 
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 
 class SelectObsoleteDrafts(DirectoryPaneCommand):
@@ -85,6 +86,19 @@ class _Move(Task):
         self.set_size(sum(task.get_size() for task in tasks))
         for task in tasks:
             self.run(task)
+
+
+def get_iso_datetime(self, url):
+    try:
+        mtime = self._get_mtime(url)
+
+    except OSError:
+        return ''
+
+    return mtime.isoformat(sep=' ', timespec='minutes') if mtime else ''
+
+
+Modified.get_str = get_iso_datetime
 
 
 def _strip_dbx(path: str) -> str:
