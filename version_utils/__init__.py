@@ -109,7 +109,10 @@ def _strip_dbx(path: str) -> str:
         show_status_message(f'{prefix} not found in {path}', timeout_secs=3)
         return path
 
-    return path.replace(prefix, '', 1).lstrip('\\')
+    for unwanted in (prefix, 'directors\\'):
+        path = path.replace(unwanted, '', 1)
+
+    return path.lstrip('\\')
 
 
 # Copied from
